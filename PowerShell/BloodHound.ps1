@@ -2928,13 +2928,16 @@ function Get-GroupsXML {
                 # extract the localgroup sid for memberof
                 $GroupSID = $_.Group.Properties.GroupSid
                 if(-not $LocalSid) {
-                    if($Groupname -match 'Administrators') {
+                    # English name "Adminsitrators"
+                    if($Groupname -match 'Administratoren') {
                         $GroupSID = 'S-1-5-32-544'
                     }
-                    elseif($Groupname -match 'Remote Desktop') {
+                    # English name "Remote Desktop Users"
+                    elseif($Groupname -match 'Remotedesktopbenutzer') {
                         $GroupSID = 'S-1-5-32-555'
                     }
-                    elseif($Groupname -match 'Guests') {
+                    # English name "Guests"
+                    elseif($Groupname -match 'Gäste') {
                         $GroupSID = 'S-1-5-32-546'
                     }
                     else {
@@ -3155,13 +3158,16 @@ function Get-NetGPOGroup {
                     $GroupName = $Membership.Key
 
                     if($GroupName -and ($GroupName.Trim() -ne '')) {
-                        if($Groupname -match 'Administrators') {
+                        # English name "Adminsitrators"
+                        if($Groupname -match 'Administratoren') {
                             $GroupSID = 'S-1-5-32-544'
                         }
-                        elseif($Groupname -match 'Remote Desktop') {
+                        # English name "Remote Desktop Users"
+                        elseif($Groupname -match 'Remotedesktopbenutzer') {
                             $GroupSID = 'S-1-5-32-555'
                         }
-                        elseif($Groupname -match 'Guests') {
+                        # English name "Guests"
+                        elseif($Groupname -match 'Gäste') {
                             $GroupSID = 'S-1-5-32-546'
                         }
                         elseif($GroupName.Trim() -ne '') {
@@ -3283,7 +3289,7 @@ function Find-GPOLocation {
         PS C:\> Find-GPOLocation
 
         Find all user/group -> machine relationships where the user/group is a member
-        of the local administrators group on target machines.
+        of the local Administrators group on target machines.
 
     .EXAMPLE
 
@@ -3315,7 +3321,7 @@ function Find-GPOLocation {
         $DomainController,
 
         [String]
-        $LocalGroup = 'Administrators',
+        $LocalGroup = 'Administratoren',
 
         [Switch]
         $UsePSDrive,
@@ -3579,7 +3585,7 @@ function Get-NetLocalGroup {
         [Parameter(ParameterSetName = 'WinNT')]
         [Parameter(ParameterSetName = 'API')]
         [String]
-        $GroupName = 'Administrators',
+        $GroupName = 'Administratoren',
 
         [Parameter(ParameterSetName = 'API')]
         [Switch]
